@@ -43,4 +43,3 @@ optional_verticals = [
     DiatonicInterval('major', -17),
     DiatonicInterval('minor', -17),
 ]
-

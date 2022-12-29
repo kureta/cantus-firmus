@@ -143,7 +143,7 @@ def is_valid_triplet(triplet, cantus_firmus):
     )
 
 
-def generate_next_tuplet(previous_tuplet, cantus_firmus, predicate):
+def generate_next_tuplet(previous_tuplet, cantus_firmus, predicate=lambda x, y: True):
     next_tuplets = []
     for idx, (left, right) in enumerate(zip(previous_tuplet[:-1], previous_tuplet[1:])):
         steps = []
@@ -241,7 +241,7 @@ def do_it(cantus_firmus, register, is_wide=True, is_cf_above=False):
     quadruplets = generate_next_tuplet(triplets, cantus_firmus, is_valid_quadruplet)
     results = quadruplets
     while len(results) > 1:
-        results = generate_next_tuplet(results, cantus_firmus, lambda x, y: True)
+        results = generate_next_tuplet(results, cantus_firmus)
     results = [r for r in results[0] if is_good(r, cantus_firmus)]
 
     return results
